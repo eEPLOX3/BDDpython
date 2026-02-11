@@ -1,5 +1,7 @@
 import customtkinter as ctk
 from controllers.user_dashboard_controller import UserDashboardController
+from views.student_view import StudentView
+from views.professor_view import ProfessorView
 
 class UserDashboardView(ctk.CTkFrame):
     def __init__(self, master, user_data, on_logout):
@@ -137,8 +139,19 @@ class UserDashboardView(ctk.CTkFrame):
     def show_module(self, module_name):
         self.clear_content()
         
-        # Placeholder para el módulo
-        # Aquí instanciaremos las vistas reales (AlumnosView, etc.)
+        if module_name == "Alumnos":
+            # Instanciar y mostrar la vista de estudiantes real
+            student_view = StudentView(self.content_frame)
+            student_view.pack(fill="both", expand=True)
+            return
+
+        if module_name == "Profesores":
+            # Instanciar y mostrar la vista de profesores real
+            prof_view = ProfessorView(self.content_frame)
+            prof_view.pack(fill="both", expand=True)
+            return
+
+        # Placeholder para otros módulos
         container = ctk.CTkFrame(self.content_frame, fg_color="white", corner_radius=10)
         container.pack(fill="both", expand=True, padx=40, pady=40)
         
